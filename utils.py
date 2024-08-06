@@ -3,6 +3,7 @@ import pandas as pd
 from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
 import json
+import os
 
 def read_json(file_path):
     try:
@@ -63,6 +64,8 @@ def style_cell(cell, font=None, fill=None, border=None):
 
 def budget_sheet(expense_list, balance):
     #File address
+    if not os.path.isdir("./output"):
+        os.mkdir("output")
     template_path = 'template.xlsx'
     output_file = "./output/output.xlsx"
     wb = load_workbook(template_path)
